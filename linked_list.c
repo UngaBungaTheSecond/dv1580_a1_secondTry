@@ -125,13 +125,13 @@ int list_count_nodes(Node** head){
 }
 
 void list_cleanup(Node** head){
-  Node* walkerNode = *head;
-  Node* toDelete;
-  while(walkerNode->next != NULL){
-    toDelete = walkerNode;
-    walkerNode = walkerNode->next;
-    mem_free(toDelete);
-  }
+  // Node* walkerNode = *head;
+  // Node* toDelete;
+  // while(walkerNode->next != NULL){
+  //   toDelete = walkerNode;
+  //   walkerNode = walkerNode->next;
+  //   mem_free(toDelete);
+  // }
   //mem_free(walkerNode);
 
   mem_deinit();
