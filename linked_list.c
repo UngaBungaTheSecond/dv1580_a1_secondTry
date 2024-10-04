@@ -53,6 +53,12 @@ void list_insert_before(Node** head, Node* next_node, uint16_t data){
 void list_delete(Node** head, uint16_t data){
   if(*head == NULL){
     printf("det finns inga nodes");
+    return NULL;
+  }
+  else if((*head)->data == data){
+    Node* nexthead = (*head)->next;
+    mem_free((*head));
+    *head = nexthead;
   }
   else{
     Node* walkerNode = *head;
@@ -63,6 +69,7 @@ void list_delete(Node** head, uint16_t data){
     }
     if(walkerNode->next == NULL && walkerNode->data != data){
       printf("the node you look for does not exist");
+      return NULL;
     }
     else{
       prevNode->next = walkerNode->next;
@@ -125,14 +132,6 @@ int list_count_nodes(Node** head){
 }
 
 void list_cleanup(Node** head){
-  // Node* walkerNode = *head;
-  // Node* toDelete;
-  // while(walkerNode->next != NULL){
-  //   toDelete = walkerNode;
-  //   walkerNode = walkerNode->next;
-  //   mem_free(toDelete);
-  // }
-  //mem_free(walkerNode);
-
   mem_deinit();
+  *head = NULL;
 }
