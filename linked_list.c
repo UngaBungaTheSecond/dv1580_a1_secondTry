@@ -1,5 +1,7 @@
 #include "linked_list.h"
 
+//--------- I am soo sorry if i did not comment this script as good as the others i just di not have the time for it before the deadline -------------//
+
 int nrOfNodes = 0;
 
 void list_init(Node** head, size_t size){
@@ -90,41 +92,36 @@ Node* list_search(Node** head, uint16_t data){
 }
 
 void list_display(Node** head){
-  Node* walkNode = *head;
+  Node* walkerNode = *head;
   printf("[");
-
-  while(walkNode->next != NULL)
-  {
-      printf("%d", walkNode->data);
+  while(walkerNode->next != NULL){
+      printf("%d", walkerNode->data);
       printf(", ");
-      walkNode = walkNode->next;
+      walkerNode = walkerNode->next;
   }
-  printf("%d", walkNode->data);
+  printf("%d", walkerNode->data);
   printf("]");
 }
 
 void list_display_range(Node** head, Node* start_node, Node* end_node){
-  if(start_node == NULL)
-  {
+  if(start_node == NULL){
       start_node = *head;
   }
 
-  if(end_node == NULL) {
+  if(end_node == NULL){
       list_display(&start_node);
       return;
   }
 
-  Node* walkNode = start_node;
+  Node* walkerNode = start_node;
   printf("[");
 
-  while(walkNode->next != NULL && walkNode != end_node)
-  {
-      printf("%d", walkNode->data);
+  while(walkerNode->next != NULL && walkerNode != end_node){
+      printf("%d", walkerNode->data);
       printf(", ");
-      walkNode = walkNode->next;
+      walkerNode = walkerNode->next;
   }
-
-  printf("%d", walkNode->data);
+  printf("%d", walkerNode->data);
   printf("]");
 }
 
