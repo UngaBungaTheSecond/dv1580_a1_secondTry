@@ -77,10 +77,11 @@ Node* list_search(Node** head, uint16_t data){
   }
   if(walkerNode->next == NULL && walkerNode->data != data){
       printf("the node you look for does not exist");
+      return NULL;
     }
-    else{
-      return walkerNode;
-    }
+  else{
+    return walkerNode;
+  }
 }
 
 void list_display(Node** head){
