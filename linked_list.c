@@ -93,15 +93,15 @@ Node* list_search(Node** head, uint16_t data){
 }
 
 void list_display(Node** head){
-  Node* walkerNode = *head;
+  /*Node* walkerNode = *head;
   printf("[");
   printf("%d", walkerNode->data);
   while(walkerNode->next != NULL){
     walkerNode = walkerNode->next;
     printf(", %d", walkerNode->data);
   }
-  printf("]");
-  //list_display_range(*head, NULL, NULL);
+  printf("]");*/
+  list_display_range(*head, NULL, NULL);
 }
 
 void list_display_range(Node** head, Node* start_node, Node* end_node){
