@@ -12,7 +12,6 @@ void list_insert(Node** head, uint16_t data){
   theNode->data = data;
   theNode->next = NULL;
   if(theNode==NULL){printf("ERROR");}
-
   if(*head == NULL){
     *head = theNode;
   }
@@ -53,7 +52,7 @@ void list_insert_before(Node** head, Node* next_node, uint16_t data){
 void list_delete(Node** head, uint16_t data){
   if(*head == NULL){
     printf("det finns inga nodes");
-    return NULL;
+    //return NULL; <--- gabbes test
   }
   else if((*head)->data == data){
     Node* nexthead = (*head)->next;
@@ -69,7 +68,7 @@ void list_delete(Node** head, uint16_t data){
     }
     if(walkerNode->next == NULL && walkerNode->data != data){
       printf("the node you look for does not exist");
-      return NULL;
+      //return NULL; <--- gabbes test
     }
     else{
       prevNode->next = walkerNode->next;
@@ -93,24 +92,24 @@ Node* list_search(Node** head, uint16_t data){
 }
 
 void list_display(Node** head){
-   Node* walkNode = *head;
-    printf("[");
+  Node* walkNode = *head;
+  printf("[");
 
-    while(walkNode->next != NULL)
-    {
-        printf("%d", walkNode->data);
-        printf(", ");
-        walkNode = walkNode->next;
-    }
-    printf("%d", walkNode->data);
-    printf("]");
+  while(walkNode->next != NULL)
+  {
+      printf("%d", walkNode->data);
+      printf(", ");
+      walkNode = walkNode->next;
+  }
+  printf("%d", walkNode->data);
+  printf("]");
   //list_display_range(*head, NULL, NULL);
 }
 
 void list_display_range(Node** head, Node* start_node, Node* end_node){
   if(start_node == NULL)
   {
-      start_node = head;
+      start_node = *head;
   }
 
   if(end_node == NULL) {
@@ -130,6 +129,7 @@ void list_display_range(Node** head, Node* start_node, Node* end_node){
 
   printf("%d", walkNode->data);
   printf("]");
+
   /*Node* walkerNode = *head;
   if(start_node == NULL){
     walkerNode = start_node;
@@ -147,11 +147,17 @@ void list_display_range(Node** head, Node* start_node, Node* end_node){
 int list_count_nodes(Node** head){
   int amount = 0;
   Node* walkerNode = *head;
-  while(walkerNode->next != NULL){
-    amount++;
-    walkerNode = walkerNode->next;
+  if(*head == NULL){
+    return amount;
   }
-  return amount;
+  else{
+    amount++;
+    while(walkerNode->next != NULL){
+      amount++;
+      walkerNode = walkerNode->next;
+    }
+    return amount;
+  }
 }
 
 void list_cleanup(Node** head){
