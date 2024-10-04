@@ -101,6 +101,9 @@ void list_display_range(Node** head, Node* start_node, Node* end_node){
   bool inRange = false;
 
   printf("[");
+  if(start_node == NULL){
+    start_node = *head;
+  }
 
   while(walkerNode->next != NULL){
 
