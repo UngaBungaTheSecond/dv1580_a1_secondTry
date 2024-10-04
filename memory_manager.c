@@ -6,7 +6,7 @@ size_t memorySize;
 int nrofBlocks;
 int fullBlocks;
 
-memoryBlock *TheBlocks; // <--- dynamisk array senare
+memoryBlock *TheBlocks; 
 
 void mem_init(size_t size){
     TheBlocks = malloc(size * sizeof(memoryBlock));
@@ -30,7 +30,7 @@ void* mem_alloc(size_t size){
     }
 
     else{
-        void* newStart = (void*)((char*)TheBlocks[i].start + size + 1);
+        void* newStart = (void*)((char*)TheBlocks[i].start + size);
         TheBlocks[nrofBlocks]=(memoryBlock){newStart, TheBlocks[i].blocksize - size, false};
 
         TheBlocks[i].blocksize = size;
@@ -61,4 +61,5 @@ void* mem_resize(void* block, size_t size){
 
 void mem_deinit(){
     free(memory);
+    free(TheBlocks);
 }

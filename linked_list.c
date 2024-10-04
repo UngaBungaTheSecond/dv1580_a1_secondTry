@@ -52,7 +52,6 @@ void list_insert_before(Node** head, Node* next_node, uint16_t data){
 void list_delete(Node** head, uint16_t data){
   if(*head == NULL){
     printf("det finns inga nodes");
-    //return NULL; <--- gabbes test
   }
   else if((*head)->data == data){
     Node* nexthead = (*head)->next;
@@ -68,7 +67,6 @@ void list_delete(Node** head, uint16_t data){
     }
     if(walkerNode->next == NULL && walkerNode->data != data){
       printf("the node you look for does not exist");
-      //return NULL; <--- gabbes test
     }
     else{
       prevNode->next = walkerNode->next;
@@ -103,7 +101,6 @@ void list_display(Node** head){
   }
   printf("%d", walkNode->data);
   printf("]");
-  //list_display_range(*head, NULL, NULL);
 }
 
 void list_display_range(Node** head, Node* start_node, Node* end_node){
@@ -129,19 +126,6 @@ void list_display_range(Node** head, Node* start_node, Node* end_node){
 
   printf("%d", walkNode->data);
   printf("]");
-
-  /*Node* walkerNode = *head;
-  if(start_node == NULL){
-    walkerNode = start_node;
-  }
-  printf("[");
-  printf("%d", walkerNode->data);
-
-  while(walkerNode->next != NULL && walkerNode != end_node){
-    walkerNode = walkerNode->next;
-    printf(", %d", walkerNode->data);
-  }
-  printf("]");*/
 }
 
 int list_count_nodes(Node** head){
@@ -161,6 +145,13 @@ int list_count_nodes(Node** head){
 }
 
 void list_cleanup(Node** head){
-  mem_deinit();
-  *head = NULL;
+  Node* walker = *head;
+    while(walker != NULL){
+        Node* toDel = walker;
+        walker = walker->next;
+
+        mem_free(toDel);
+    }
+    mem_deinit();
+    *head = NULL;
 }
