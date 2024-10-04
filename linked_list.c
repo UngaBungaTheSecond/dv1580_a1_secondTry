@@ -3,7 +3,7 @@
 int nrOfNodes = 0;
 
 void list_init(Node** head, size_t size){
-    mem_init(size + 1024);
+    mem_init(size);
     *head = NULL;
 }
 
@@ -132,5 +132,7 @@ void list_cleanup(Node** head){
     walkerNode = walkerNode->next;
     mem_free(toDelete);
   }
-  mem_free(walkerNode);
+  //mem_free(walkerNode);
+
+  mem_deinit();
 }
