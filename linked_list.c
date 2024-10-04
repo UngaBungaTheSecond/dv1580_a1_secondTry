@@ -72,7 +72,6 @@ void list_delete(Node** head, uint16_t data){
 
 Node* list_search(Node** head, uint16_t data){
   Node* walkerNode = *head;
-  Node* prevNode;
   while(walkerNode->next != NULL && walkerNode->data != data){
     walkerNode = walkerNode->next;
   }
@@ -80,16 +79,15 @@ Node* list_search(Node** head, uint16_t data){
       printf("the node you look for does not exist");
     }
     else{
-      return(walkerNode);
+      return walkerNode;
     }
 }
 
 void list_display(Node** head){
   Node* walkerNode = *head;
-  Node* prevNode;
   printf("[");
   while(walkerNode->next != NULL){
-    pritnf("%d,", walkerNode->data);
+    printf("%d ,", walkerNode->data);
     walkerNode = walkerNode->next;
   }
   printf("]");
@@ -97,7 +95,6 @@ void list_display(Node** head){
 
 void list_display_range(Node** head, Node* start_node, Node* end_node){
   Node* walkerNode = *head;
-  Node* prevNode;
   bool inRange = false;
   printf("[");
   while(walkerNode->next != NULL){
@@ -108,7 +105,7 @@ void list_display_range(Node** head, Node* start_node, Node* end_node){
       inRange = false;
     }
     if(inRange == true){
-      pritnf("%d ,", walkerNode->data);
+      printf("%d ,", walkerNode->data);
     }
     walkerNode = walkerNode->next;
   }
