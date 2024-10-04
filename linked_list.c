@@ -4,6 +4,7 @@ int nrOfNodes = 0;
 
 void list_init(Node** head, size_t size){
     mem_init(size);
+    *head = NULL;
 }
 
 void list_insert(Node** head, uint16_t data){
