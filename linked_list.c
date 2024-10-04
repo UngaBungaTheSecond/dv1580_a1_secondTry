@@ -109,14 +109,14 @@ void list_display_range(Node** head, Node* start_node, Node* end_node){
 
     walkerNode = walkerNode->next;
 
-    if(walkerNode == start_node){
+    if(walkerNode->data == start_node->data){
       inRange = true;
       printf("%d", walkerNode->data);
     }
-    if(walkerNode == end_node){
+    if(walkerNode->data == end_node->data){
       inRange = false;
     }
-    if(inRange == true && walkerNode != start_node){
+    if(inRange == true && walkerNode->data != start_node->data){
       printf(", %d", walkerNode->data);
     }
   }
