@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include "common_defs.h"
 
 typedef struct memoryBlock{
     void* start;
