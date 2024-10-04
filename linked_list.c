@@ -98,11 +98,18 @@ void list_display(Node** head){
 
 void list_display_range(Node** head, Node* start_node, Node* end_node){
   Node* walkerNode = *head;
+  Node* walkinNode = *head;
   bool inRange = false;
 
   printf("[");
   if(start_node == NULL){
     start_node = *head;
+  }
+  if(end_node == NULL){
+    while(walkinNode->next != NULL){
+      walkinNode = walkinNode->next;
+    }
+    end_node = walkinNode;
   }
 
   while(walkerNode->next != NULL){
