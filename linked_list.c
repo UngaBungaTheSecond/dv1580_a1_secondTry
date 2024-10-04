@@ -117,8 +117,7 @@ void list_display_range(Node** head, Node* start_node, Node* end_node){
   printf("[");
 
   while(walkerNode->next != NULL && walkerNode != end_node){
-      printf("%d", walkerNode->data);
-      printf(", ");
+      printf("%d, ", walkerNode->data);
       walkerNode = walkerNode->next;
   }
   printf("%d", walkerNode->data);
