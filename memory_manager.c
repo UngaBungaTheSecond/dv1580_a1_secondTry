@@ -4,6 +4,7 @@
 void* memory;
 size_t memorySize;
 int nrofBlocks;
+int fullBlocks;
 
 memoryBlock *TheBlocks; // <--- dynamisk array senare
 
@@ -22,7 +23,7 @@ void* mem_alloc(size_t size){
     while (i< nrofBlocks && (TheBlocks[i].taken == true || TheBlocks[i].blocksize < size)){i++;}
 
     if(i >= nrofBlocks) return NULL;
-
+    fullBlocks++;
     if(TheBlocks[i].blocksize == size){
         TheBlocks[i].taken = true;
         return TheBlocks[i].start;
@@ -44,6 +45,13 @@ void mem_free(void* block){
     while(i < nrofBlocks && TheBlocks[i].start != block) {i++;}
     if(i>= nrofBlocks){return;}
     TheBlocks[i].taken = false;
+    fullBlocks--;
+    if(fullBlocks <= 0){
+        TheBlocks[0] = (memoryBlock) {memory, memorySize, false};
+        nrofBlocks = 1;
+    }
+
+
 }
 
 void* mem_resize(void* block, size_t size){
